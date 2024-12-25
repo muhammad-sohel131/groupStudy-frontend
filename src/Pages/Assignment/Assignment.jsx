@@ -25,6 +25,7 @@ const Assignments = () => {
 
   // Delete Assignment
   const handleDelete = async (id, creatorEmail) => {
+   
     if (creatorEmail !== user.email) {
       toast.error("You are not authorized to delete this assignment.");
       return;
@@ -83,7 +84,7 @@ const Assignments = () => {
               </p>
               <div className="mt-4 flex gap-2">
                 <button
-                  onClick={() => handleDelete(assignment._id, assignment.creatorEmail)}
+                  onClick={() => handleDelete(assignment._id, assignment.email)}
                   className="bg-red-600 text-white py-1 px-3 rounded hover:bg-red-500"
                 >
                   Delete
