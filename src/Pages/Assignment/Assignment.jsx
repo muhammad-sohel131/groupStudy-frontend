@@ -52,8 +52,12 @@ const Assignments = () => {
   };
 
   // Navigate to Update Page
-  const handleUpdate = (id) => {
-    navigate(`/assignments/update/${id}`);
+  const handleUpdate = (id, creatorEmail) => {
+    if (creatorEmail !== user.email) {
+      toast.error("You are not authorized to update this assignment.");
+      return;
+    }
+    navigate(`/update-assignment/${id}`);
   };
 
   // Navigate to View Page
@@ -90,7 +94,7 @@ const Assignments = () => {
                   Delete
                 </button>
                 <button
-                  onClick={() => handleUpdate(assignment._id)}
+                  onClick={() => handleUpdate(assignment._id, assignment.email)}
                   className="bg-yellow-500 text-white py-1 px-3 rounded hover:bg-yellow-400"
                 >
                   Update
