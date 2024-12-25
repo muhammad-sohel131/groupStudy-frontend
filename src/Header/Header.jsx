@@ -51,7 +51,7 @@ export default function Header() {
                     }
                 </ul>
 
-                <div className='flex gap-10 items-center'>
+                <div className='flex lg:hidden gap-10 items-center'>
                     <div onClick={() => setMobileDrop(!mobileDrop)}>
                         {!mobileDrop ? <CiMenuBurger className='text-lg' /> : <IoMdClose className='text-lg' />}
                     </div>
