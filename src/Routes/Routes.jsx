@@ -7,6 +7,7 @@ import CreateAssignment from '../Pages/CreateAssignment/CreateAssignment'
 import MyAttemptedAssignment from '../Pages/MyAttemptedAssignment/MyAttemptedAssignment'
 import Login from '../Pages/Login/Login'
 import Register from '../Pages/Register/Register'
+import PrivateRoute from './PrivateRoute'
 
 const Routes = createBrowserRouter([
     {
@@ -19,15 +20,15 @@ const Routes = createBrowserRouter([
             },
             {
                 path: "/pending-assignments",
-                element: <PendingAssignments />
+                element: <PrivateRoute><PendingAssignments /></PrivateRoute>
             },
             {
                 path: "/create-assignment",
-                element: <CreateAssignment />
+                element: <PrivateRoute><CreateAssignment /></PrivateRoute>
             },
             {
                 path: "/attempted-assignments",
-                element: <MyAttemptedAssignment />
+                element: <PrivateRoute><MyAttemptedAssignment /></PrivateRoute>
             },
             {
                 path: "/login",

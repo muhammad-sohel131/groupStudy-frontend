@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import AuthContext from '../../context/AuthContext';
+import { toast } from 'react-toastify';
 
 export default function Login() {
+    const { singInWithGoogle , singInUser} = useContext(AuthContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -10,17 +13,28 @@ export default function Login() {
     const handleLogin = (e) => {
       e.preventDefault();
       // Placeholder for authentication logic
-      if (email === "test@example.com" && password === "password") {
-        alert("Login successful");
-        navigate('/');
-      } else {
-        alert("Invalid credentials");
-      }
+      singInUser(email,password)
+      .then(e => {
+        console.log(e.user);
+        navigate("/");
+        toast.success('Login Success!')
+      })
+      .catch(err => {
+        console.log(err)
+        toast.error("Wrong Credential!")
+      })
     };
   
     const handleGoogleLogin = () => {
-      // Placeholder for Google login logic
-      alert("Google login feature coming soon!");
+        singInWithGoogle()
+        .then((e) => {
+            console.log(e);
+            toast.success("Loged in successfully!")
+        })
+        .catch(err => {
+            console.log(err.message);
+            toast.error("Something Wrong")
+        })
     };
   
     return (

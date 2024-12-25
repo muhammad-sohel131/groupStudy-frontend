@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast} from 'react-toastify';
+import AuthContext from '../../context/AuthContext';
 
 const Register = () => {
+  const {createUser} = useContext(AuthContext);
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [photoURL, setPhotoURL] = useState('');
@@ -23,8 +26,17 @@ const Register = () => {
       return;
     }
     // Placeholder for registration logic
-    toast.success("Registration successful!");
-    navigate('/login');
+    createUser(email,password)
+    .then(e => {
+      console.log(e.user)
+      toast.success("Registration successful!");
+    })
+    .catch(e => {
+      console.log(e);
+      toast.error("Something Wrong")
+    })
+   
+    //navigate('/login');
   };
 
   return (
