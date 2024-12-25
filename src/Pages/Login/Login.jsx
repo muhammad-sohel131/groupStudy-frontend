@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import AuthContext from '../../context/AuthContext';
 import { toast } from 'react-toastify';
@@ -9,14 +9,15 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-  
+    const location = useLocation();
+    const form = location.state || '/';
+    console.log(form)
     const handleLogin = (e) => {
       e.preventDefault();
-      // Placeholder for authentication logic
       singInUser(email,password)
       .then(e => {
         console.log(e.user);
-        navigate("/");
+        navigate(form);
         toast.success('Login Success!')
       })
       .catch(err => {
@@ -30,6 +31,7 @@ export default function Login() {
         .then((e) => {
             console.log(e);
             toast.success("Loged in successfully!")
+            navigate(form)
         })
         .catch(err => {
             console.log(err.message);
