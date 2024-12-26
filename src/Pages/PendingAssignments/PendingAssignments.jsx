@@ -91,7 +91,7 @@ const PendingAssignments = () => {
               >
                 <td className="px-6 py-4">{assignment.title}</td>
                 <td className="px-6 py-4">{assignment.marks}</td>
-                <td className="px-6 py-4">{assignment.examineeName}</td>
+                <td className="px-6 py-4">{assignment.name}</td>
                 <td className="px-6 py-4">
                   <button
                     onClick={() => setSelectedAssignment(assignment)}

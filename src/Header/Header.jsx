@@ -8,6 +8,8 @@ import { IoMdClose } from "react-icons/io";
 import { CiLight } from "react-icons/ci";
 import { CiDark } from "react-icons/ci";
 import axios from 'axios';
+import { Tooltip } from 'react-tooltip'
+import 'react-tooltip/dist/react-tooltip.css'
 
 export default function Header() {
     const { user, loading, signOutUser, theme, setTheme } = useContext(AuthContext);
@@ -50,7 +52,8 @@ export default function Header() {
                         !user ? <li><NavLink to='/login' className="text-lg hover:text-[#f4b503]">Login</NavLink></li> : (
                             <>
                                 <li><button onClick={handleLogout} className="text-lg hover:text-[#f4b503]">Logout</button></li>
-                                <li onClick={handleDropdown} className='border-2 rounded-full p-2 border-[#f4b503]'><img className='w-6' src={imgSrc} alt={user.displayName} /></li>
+                                <li onClick={handleDropdown} className='border-2 rounded-full p-1 border-[#f4b503]'><img data-tooltip-id="my-tooltip" data-tooltip-content={user.displayName} className='w-7 rounded-full' src={imgSrc} alt={user.displayName} /></li>
+                                <Tooltip id="my-tooltip" />
                             </>
                         )
                     }
@@ -63,7 +66,7 @@ export default function Header() {
                     <div onClick={() => setMobileDrop(!mobileDrop)}>
                         {!mobileDrop ? <CiMenuBurger className='text-lg' /> : <IoMdClose className='text-lg' />}
                     </div>
-                    {user && <div onClick={handleDropdown} className='border-2 rounded-full p-2 border-[#f4b503]'><img className='w-6' src={imgSrc} alt={user.displayName} /></div>}
+                    {user && <div onClick={handleDropdown} className='border-2 rounded-full p-1 border-[#f4b503]'><img className='w-7 rounded-full' src={imgSrc} alt={user.displayName} /></div>}
 
                     <p>
                         {theme === 'dark' ? <CiLight className='text-[40px]' onClick={() => setTheme("light")} /> : <CiDark className='text-[40px]' onClick={() => setTheme("dark")} />}

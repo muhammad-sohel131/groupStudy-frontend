@@ -6,6 +6,7 @@ import axios from "axios";
 
 const AssignmentDetails = () => {
     const {user} = useContext(AuthContext)
+    console.log(user)
   const { id } = useParams();
   const [assignment, setAssignment] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -20,7 +21,6 @@ const AssignmentDetails = () => {
         const response = await axios.get(`https://group-study-backend-six.vercel.app/assignments/${id}`, {
           withCredentials: true,
         });
-        console.log(response.data)
         setAssignment(response.data);
       } catch (error) {
         console.error("Error fetching assignment:", error);
@@ -44,7 +44,8 @@ const AssignmentDetails = () => {
       status: "pending",
       userEmail: user.email,
       title: assignment.title,
-      marks: assignment.marks
+      marks: assignment.marks,
+      name: user.displayName
     };
 
     try {

@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast} from 'react-toastify';
 import AuthContext from '../../context/AuthContext';
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
   const {createUser} = useContext(AuthContext);
@@ -21,23 +22,47 @@ const Register = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
+  
+    // Validate password
     if (!validatePassword(password)) {
-      toast.error("Password must have at least one uppercase letter, one lowercase letter, and be at least 6 characters long.");
+      toast.error(
+        "Password must have at least one uppercase letter, one lowercase letter, and be at least 6 characters long."
+      );
       return;
     }
-    // Placeholder for registration logic
-    createUser(email,password)
-    .then(e => {
-      console.log(e.user)
-      toast.success("Registration successful!");
-    })
-    .catch(e => {
-      console.log(e);
-      toast.error("Something Wrong")
-    })
-   
-    //navigate('/login');
+  
+    // Perform registration
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+  
+        // Update user profile with display name
+        updateProfile(user, {
+          displayName: name || "New User",
+          photoURL: photoURL
+        })
+          .then(() => {
+            toast.success("Registration successful!");
+            console.log("User registered with profile:", user);
+            navigate("/login");
+          })
+          .catch((err) => {
+            console.error("Profile update error:", err);
+            toast.error("Failed to update profile.");
+          });
+      })
+      .catch((err) => {
+        console.error("Registration error:", err);
+        if (err.code === "auth/email-already-in-use") {
+          toast.error("Email is already registered.");
+        } else if (err.code === "auth/weak-password") {
+          toast.error("Password is too weak.");
+        } else {
+          toast.error("Something went wrong. Please try again.");
+        }
+      });
   };
+  
 
   return (
     <div className="flex justify-center items-center py-10">
