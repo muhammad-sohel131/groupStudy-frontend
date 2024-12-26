@@ -4,15 +4,18 @@ import { toast } from "react-toastify";
 import AuthContext from "../../context/AuthContext";
 
 const Assignments = () => {
+  const [difficulty, setDifficulty] = useState('');
+  const [search, setSearch] = useState('');
+
   const [assignments, setAssignments] = useState([]);
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
   const navigate = useNavigate();
 
   // Fetch all assignments
   useEffect(() => {
     const fetchAssignments = async () => {
       try {
-        const response = await fetch("http://localhost:3000/assignments");
+        const response = await fetch(`http://localhost:3000/assignments?difficulty=${difficulty}&search=${search}`);
         const data = await response.json();
         setAssignments(data);
       } catch (error) {
@@ -21,11 +24,11 @@ const Assignments = () => {
     };
 
     fetchAssignments();
-  }, []);
+  }, [difficulty, search]);
 
   // Delete Assignment
   const handleDelete = async (id, creatorEmail) => {
-   
+
     if (creatorEmail !== user.email) {
       toast.error("You are not authorized to delete this assignment.");
       return;
@@ -68,6 +71,41 @@ const Assignments = () => {
   return (
     <div className="max-w-7xl mx-auto p-6">
       <h2 className="text-2xl font-bold mb-6 text-gray-800">All Assignments</h2>
+      {/* Filter and Search Section */}
+      <div className="p-6 mb-10 bg-gray-100 rounded-md shadow-md">
+        <div className="flex flex-col sm:flex-row items-center gap-4">
+          <div className="w-full sm:w-1/3">
+            <label htmlFor="difficulty" className="block text-sm font-medium text-gray-700">
+              Filter by Difficulty:
+            </label>
+            <select
+              id="difficulty"
+              value={difficulty}
+              onChange={(e) => setDifficulty(e.target.value)}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 p-3 focus:border-blue-500 sm:text-sm"
+            >
+              <option value="">All</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+          <div className="w-full sm:w-2/3">
+            <label htmlFor="search" className="block text-sm font-medium text-gray-700">
+              Search by Title:
+            </label>
+            <input
+              type="text"
+              id="search"
+              placeholder="Search assignments"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="mt-1 p-3 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            />
+          </div>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {assignments.map((assignment) => (
           <div
