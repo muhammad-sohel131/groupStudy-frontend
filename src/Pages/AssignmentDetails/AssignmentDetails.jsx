@@ -78,7 +78,7 @@ const AssignmentDetails = () => {
       <img
         src={assignment.thumbnail}
         alt={assignment.title}
-        className="w-full h-60 object-cover mt-4"
+        className="w-full h-60 object-contain mt-4"
       />
       <p className="mt-4">{assignment.description}</p>
       <p className="mt-2 font-medium text-gray-700">Marks: {assignment.marks}</p>

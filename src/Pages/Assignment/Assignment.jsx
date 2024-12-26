@@ -118,7 +118,7 @@ const Assignments = () => {
             <img
               src={assignment.thumbnail}
               alt={assignment.title}
-              className="h-40 w-full object-cover"
+              className="h-40 w-full object-contain"
             />
             <div className="p-4">
               <h3 className="text-lg font-bold text-gray-800">{assignment.title}</h3>
