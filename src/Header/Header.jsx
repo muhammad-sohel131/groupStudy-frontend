@@ -7,10 +7,11 @@ import { CiMenuBurger } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
 import { CiLight } from "react-icons/ci";
 import { CiDark } from "react-icons/ci";
+import axios from 'axios';
 
 export default function Header() {
-    const { user, loading, signOutUser , theme, setTheme } = useContext(AuthContext);
-    const menuStyle = theme == 'dark' ? {background: 'black', color:'white'} : {background: 'white', color:'black'}
+    const { user, loading, signOutUser, theme, setTheme } = useContext(AuthContext);
+    const menuStyle = theme == 'dark' ? { background: 'black', color: 'white' } : { background: 'white', color: 'black' }
     const [dropDown, setDropDown] = useState(false);
     const [mobileDrop, setMobileDrop] = useState(false)
     const imgSrc = user?.photoURL || "https://i.ibb.co.com/jywg152/man-303792-640.png"
@@ -22,7 +23,8 @@ export default function Header() {
     const handleLogout = () => {
         signOutUser()
             .then(e => {
-                console.log(e)
+                axios.post('http://localhost:3000/logout', user, { withCredentials: true })
+                    .then(res => console.log(res.data))
                 toast.success("Logout Success!")
                 navigate("/");
             })

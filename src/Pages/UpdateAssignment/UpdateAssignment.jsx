@@ -21,7 +21,9 @@ const UpdateAssignment = () => {
     useEffect(() => {
         const fetchAssignment = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/assignments/${id}`);
+                const response = await axios.get(`http://localhost:3000/assignments/${id}`, {
+                    withCredentials: true,
+                  });
                 const assignment = response.data;
 
                 setTitle(assignment.title);
@@ -62,7 +64,9 @@ const UpdateAssignment = () => {
         };
 
         try {
-            const response = await axios.put(`http://localhost:3000/assignments/${id}`, updatedAssignment);
+            const response = await axios.put(`http://localhost:3000/assignments/${id}`, updatedAssignment, {
+                withCredentials: true,
+              });
 
             if (response.status === 200) {
                 toast.success("Assignment updated successfully!");

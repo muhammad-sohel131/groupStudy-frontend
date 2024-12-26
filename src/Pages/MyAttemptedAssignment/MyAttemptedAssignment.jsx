@@ -12,8 +12,11 @@ const MyAttemptedAssignment = () => {
     const fetchSubmissions = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/submissions?email=${userEmail}`
-        );
+          `http://localhost:3000/submissions?email=${userEmail}`,
+          {
+            withCredentials: true,
+          }
+        );        
         setAssignments(response.data);
         setLoading(false);
       } catch (error) {

@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "group-study-5be6c"
-  }
+    "default": "group-study-b6d75",
+    "dist": "group-study-b6d75"
+  },
+  "targets": {},
+  "etags": {}
 }

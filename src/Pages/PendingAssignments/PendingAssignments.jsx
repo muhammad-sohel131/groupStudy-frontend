@@ -15,7 +15,10 @@ const PendingAssignments = () => {
     const fetchPendingAssignments = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/submissions?status=pending`
+          `http://localhost:3000/submissions?status=pending`, 
+          {
+            withCredentials: true
+          }
         );
         const filteredAssignments = response.data.filter(
           (assignment) => assignment.userEmail !== userEmail
@@ -44,6 +47,9 @@ const PendingAssignments = () => {
           obtainedMarks : marks,
           feedback,
           status: "completed",
+        },
+        {
+          withCredentials:true
         }
       );
       alert("Marks submitted successfully!");

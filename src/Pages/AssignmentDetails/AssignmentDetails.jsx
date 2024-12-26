@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import AuthContext from "../../context/AuthContext";
+import axios from "axios";
 
 const AssignmentDetails = () => {
     const {user} = useContext(AuthContext)
@@ -16,9 +17,11 @@ const AssignmentDetails = () => {
   useEffect(() => {
     const fetchAssignment = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/assignments/${id}`);
-        const data = await response.json();
-        setAssignment(data);
+        const response = await axios.get(`http://localhost:3000/assignments/${id}`, {
+          withCredentials: true,
+        });
+        console.log(response.data)
+        setAssignment(response.data);
       } catch (error) {
         console.error("Error fetching assignment:", error);
       }
@@ -45,23 +48,24 @@ const AssignmentDetails = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/submissions", {
-        method: "POST",
+      const response = await axios.post("http://localhost:3000/submissions", submissionData, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(submissionData),
+        withCredentials: true,
       });
-
-      if (response.ok) {
+    
+      if (response.status === 200 || response.status === 201) {
         toast.success("Assignment submitted successfully!");
       } else {
         throw new Error("Failed to submit assignment.");
       }
     } catch (error) {
-      toast.error("Error submitting assignment.");
-      console.error(error);
-    } finally {
+      console.error("Error submitting assignment:", error);
+      toast.error("Failed to submit assignment.");
+    }
+    
+    finally {
       setIsSubmitting(false);
     }
   };

@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import AuthContext from "../../context/AuthContext";
+import axios from 'axios'
 
 const CreateAssignment = () => {
   const [title, setTitle] = useState("");
@@ -37,15 +38,19 @@ const CreateAssignment = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/assignments", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(assignmentData),
-      });
+      const response = await axios.post(
+        "http://localhost:3000/assignments",
+        assignmentData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      
       console.log(response)
-      if (response.ok) {
+      if (response.statusText === 'OK') {
         toast.success("Assignment created successfully!");
         navigate("/assignments");
       } else {
