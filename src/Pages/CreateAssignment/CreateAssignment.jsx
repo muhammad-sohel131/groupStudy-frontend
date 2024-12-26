@@ -103,6 +103,7 @@ const CreateAssignment = () => {
             onChange={(e) => setThumbnail(e.target.value)}
             className="w-full p-2 border border-gray-300 rounded-md text-gray-700"
             placeholder="Enter image URL"
+            required
           />
         </div>
         <div className="mb-4">

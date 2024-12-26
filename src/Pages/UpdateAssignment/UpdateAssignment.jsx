@@ -100,6 +100,7 @@ const UpdateAssignment = () => {
                         onChange={(e) => setTitle(e.target.value)}
                         className="w-full p-2 border border-gray-300 rounded-md"
                         placeholder="Enter assignment title"
+                        required
                     />
                 </div>
                 <div className="mb-4">
@@ -109,6 +110,7 @@ const UpdateAssignment = () => {
                         onChange={(e) => setDescription(e.target.value)}
                         className="w-full p-2 border border-gray-300 rounded-md"
                         placeholder="Enter assignment description"
+                        required
                     ></textarea>
                 </div>
                 <div className="mb-4">
@@ -119,6 +121,7 @@ const UpdateAssignment = () => {
                         onChange={(e) => setMarks(e.target.value)}
                         className="w-full p-2 border border-gray-300 rounded-md"
                         placeholder="Enter marks"
+                        required
                     />
                 </div>
                 <div className="mb-4">
@@ -129,6 +132,7 @@ const UpdateAssignment = () => {
                         onChange={(e) => setThumbnail(e.target.value)}
                         className="w-full p-2 border border-gray-300 rounded-md"
                         placeholder="Enter image URL"
+                        required
                     />
                 </div>
                 <div className="mb-4">

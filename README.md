@@ -1,7 +1,7 @@
-# Project Name: Group Study Frontend
+# Project Name: Group Study
 
 ## Purpose
-The **Group Study Frontend** is a user-friendly platform designed to simplify group learning and assignment submissions. It provides an intuitive interface for users to manage assignments, track submissions, and collaborate effectively.
+The **Group Study** is a user-friendly platform designed to simplify group learning and assignment submissions. It provides an intuitive interface for users to manage assignments, track submissions, and collaborate effectively.
 
 ## Live URL
 [Live Application](https://group-study-b6d75.web.app)
@@ -33,5 +33,6 @@ The **Group Study Frontend** is a user-friendly platform designed to simplify gr
 - `firebase` - For authentication and backend integration.
 - `react-toastify` - For toast notifications.
 - `react-tooltip` - For tooltips on hover.
+- `motion` - For showing Assingment smothely
 
 

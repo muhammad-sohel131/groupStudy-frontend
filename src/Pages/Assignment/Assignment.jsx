@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion"; // Updated import
 import AuthContext from "../../context/AuthContext";
 
 const Assignments = () => {
@@ -8,7 +9,7 @@ const Assignments = () => {
   const [search, setSearch] = useState('');
 
   const [assignments, setAssignments] = useState([]);
-  const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   // Fetch all assignments
@@ -28,7 +29,6 @@ const Assignments = () => {
 
   // Delete Assignment
   const handleDelete = async (id, creatorEmail) => {
-
     if (creatorEmail !== user.email) {
       toast.error("You are not authorized to delete this assignment.");
       return;
@@ -108,9 +108,12 @@ const Assignments = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {assignments.map((assignment) => (
-          <div
+          <motion.div
             key={assignment._id}
             className="bg-white shadow-md rounded-md overflow-hidden"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
           >
             <img
               src={assignment.thumbnail}
@@ -145,7 +148,7 @@ const Assignments = () => {
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

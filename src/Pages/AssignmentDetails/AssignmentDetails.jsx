@@ -6,7 +6,6 @@ import axios from "axios";
 
 const AssignmentDetails = () => {
     const {user} = useContext(AuthContext)
-    console.log(user)
   const { id } = useParams();
   const [assignment, setAssignment] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -102,6 +101,7 @@ const AssignmentDetails = () => {
             onChange={(e) => setSubmission({ ...submission, docsLink: e.target.value })}
             className="w-full p-2 border border-gray-300 rounded mt-2"
             placeholder="Enter Google Docs link"
+            required
           />
           <textarea
             value={submission.note}
