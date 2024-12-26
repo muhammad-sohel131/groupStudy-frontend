@@ -9,6 +9,7 @@ export default function AuthProvider({children}) {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [theme, setTheme] = useState('light');
 
     const createUser = (email, password) => {
         setLoading(true);
@@ -49,7 +50,9 @@ export default function AuthProvider({children}) {
         createUser,
         singInUser,
         singInWithGoogle,
-        signOutUser
+        signOutUser,
+        theme,
+        setTheme
     }
   return (
     <AuthContext.Provider value={authInfo}>

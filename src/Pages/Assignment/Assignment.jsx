@@ -70,7 +70,7 @@ const Assignments = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">All Assignments</h2>
+      <h2 className="text-2xl font-bold mb-6">All Assignments</h2>
       {/* Filter and Search Section */}
       <div className="p-6 mb-10 bg-gray-100 rounded-md shadow-md">
         <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -82,7 +82,7 @@ const Assignments = () => {
               id="difficulty"
               value={difficulty}
               onChange={(e) => setDifficulty(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 p-3 focus:border-blue-500 sm:text-sm"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 p-3 focus:border-blue-500 sm:text-sm text-black"
             >
               <option value="">All</option>
               <option value="easy">Easy</option>
@@ -100,7 +100,7 @@ const Assignments = () => {
               placeholder="Search assignments"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="mt-1 p-3 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              className="mt-1 p-3 block w-full rounded-md border-gray-300 shadow-sm text-black focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
           </div>
         </div>

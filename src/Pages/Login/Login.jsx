@@ -51,7 +51,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center py-10">
       <div className="bg-white p-8 rounded-md shadow-md w-full max-w-md">
         <h1 className="text-2xl text-[#1AA260] font-bold text-center mb-4">Login</h1>
         <form onSubmit={handleLogin} className="space-y-4">
@@ -60,7 +60,7 @@ export default function Login() {
             <input
               type="email"
               id="email"
-              className="w-full px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2 border rounded-md text-black"
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -72,7 +72,7 @@ export default function Login() {
             <input
               type="password"
               id="password"
-              className="w-full px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2 border rounded-md text-black"
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -92,7 +92,7 @@ export default function Login() {
         >
           Login with Google
         </button>
-        <p className="text-sm text-center mt-4">
+        <p className="text-sm text-black text-center mt-4">
           Don't have an account?{' '}
           <span
             onClick={() => navigate('/register')}

@@ -69,7 +69,7 @@ const AssignmentDetails = () => {
   if (!assignment) return <div>Loading...</div>;
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-md">
+    <div className="max-w-4xl mx-auto p-6 my-10 bg-white text-gray-800 shadow-md rounded-md">
       <h2 className="text-2xl font-bold text-gray-800">{assignment.title}</h2>
       <img
         src={assignment.thumbnail}

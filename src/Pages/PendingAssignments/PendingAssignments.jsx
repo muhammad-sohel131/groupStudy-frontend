@@ -81,7 +81,7 @@ const PendingAssignments = () => {
             {pendingAssignments.map((assignment) => (
               <tr
                 key={assignment._id}
-                className="border-b hover:bg-gray-100 transition duration-150"
+                className="border-b text-gray-800 hover:bg-gray-100 transition duration-150"
               >
                 <td className="px-6 py-4">{assignment.title}</td>
                 <td className="px-6 py-4">{assignment.marks}</td>

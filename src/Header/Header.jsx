@@ -5,9 +5,12 @@ import AuthContext from '../context/AuthContext'
 import { toast } from 'react-toastify';
 import { CiMenuBurger } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
+import { CiLight } from "react-icons/ci";
+import { CiDark } from "react-icons/ci";
 
 export default function Header() {
-    const { user, loading, signOutUser } = useContext(AuthContext);
+    const { user, loading, signOutUser , theme, setTheme } = useContext(AuthContext);
+    const menuStyle = theme == 'dark' ? {background: 'black', color:'white'} : {background: 'white', color:'black'}
     const [dropDown, setDropDown] = useState(false);
     const [mobileDrop, setMobileDrop] = useState(false)
     const imgSrc = user?.photoURL || "https://i.ibb.co.com/jywg152/man-303792-640.png"
@@ -49,6 +52,9 @@ export default function Header() {
                             </>
                         )
                     }
+                    <li >
+                        {theme === 'dark' ? <CiLight className='text-[40px]' onClick={() => setTheme("light")} /> : <CiDark className='text-[40px]' onClick={() => setTheme("dark")} />}
+                    </li>
                 </ul>
 
                 <div className='flex lg:hidden gap-10 items-center'>
@@ -56,8 +62,12 @@ export default function Header() {
                         {!mobileDrop ? <CiMenuBurger className='text-lg' /> : <IoMdClose className='text-lg' />}
                     </div>
                     {user && <div onClick={handleDropdown} className='border-2 rounded-full p-2 border-[#f4b503]'><img className='w-6' src={imgSrc} alt={user.displayName} /></div>}
+
+                    <p>
+                        {theme === 'dark' ? <CiLight className='text-[40px]' onClick={() => setTheme("light")} /> : <CiDark className='text-[40px]' onClick={() => setTheme("dark")} />}
+                    </p>
                 </div>
-                {mobileDrop && <ul className='flex flex-col gap-5 items-center absolute bg-white top-14 left-0 w-full border-2 border-gray-200 rounded-md p-5 text-left'>
+                {mobileDrop && <ul style={menuStyle} className='flex flex-col gap-5 items-center absolute bg-white top-14 left-0 w-full border-2 border-gray-200 rounded-md p-5 text-left'>
                     <li><NavLink to='/' className="text-lg hover:text-[#f4b503]">Home</NavLink></li>
                     <li><NavLink to='/assignments' className="text-lg hover:text-[#f4b503]">Assignments</NavLink></li>
                     <li><NavLink to='/pending-assignments' className="text-lg hover:text-[#f4b503]">Pending Assignments</NavLink></li>
@@ -70,7 +80,7 @@ export default function Header() {
                     }
                 </ul>}
 
-                {dropDown && <ul className='absolute bg-white border-gray-200 right-0 top-12 p-4 rounded-sm'>
+                {dropDown && <ul style={menuStyle} className='absolute bg-white border-gray-200 right-0 top-12 p-4 rounded-sm'>
                     <li className='text-lg hover:text-[#f4b503]'><NavLink to='/create-assignment'>Create Assignment</NavLink></li>
                     <li className='text-lg hover:text-[#f4b503]'><NavLink to='/attempted-assignments'>My Attempted</NavLink></li>
                 </ul>}

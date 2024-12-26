@@ -40,7 +40,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center py-10">
       <div className="bg-white p-8 rounded-md shadow-md w-full max-w-md border border-gray-200">
         <h1 className="text-2xl font-bold text-center mb-4 text-[#1AA260]">Register</h1>
         <form onSubmit={handleRegister} className="space-y-4">
@@ -49,7 +49,7 @@ const Register = () => {
             <input
               type="text"
               id="name"
-              className="w-full px-3 py-2 border rounded-md focus:ring-[#1AA260] focus:border-[#1AA260]"
+              className="w-full px-3 py-2 border rounded-md text-gray-700"
               placeholder="Enter your name"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -61,7 +61,7 @@ const Register = () => {
             <input
               type="email"
               id="email"
-              className="w-full px-3 py-2 border rounded-md focus:ring-[#1AA260] focus:border-[#1AA260]"
+              className="w-full px-3 py-2 border rounded-md text-gray-700"
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -73,7 +73,7 @@ const Register = () => {
             <input
               type="url"
               id="photoURL"
-              className="w-full px-3 py-2 border rounded-md focus:ring-[#1AA260] focus:border-[#1AA260]"
+              className="w-full px-3 py-2 border rounded-md text-gray-700"
               placeholder="Enter your photo URL"
               value={photoURL}
               onChange={(e) => setPhotoURL(e.target.value)}
@@ -84,7 +84,7 @@ const Register = () => {
             <input
               type="password"
               id="password"
-              className="w-full px-3 py-2 border rounded-md focus:ring-[#1AA260] focus:border-[#1AA260]"
+              className="w-full px-3 py-2 border rounded-md text-gray-700"
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -98,7 +98,7 @@ const Register = () => {
             Register
           </button>
         </form>
-        <p className="text-sm text-center mt-4">
+        <p className="text-sm text-black text-center mt-4">
           Already have an account?{' '}
           <span
             onClick={() => navigate('/login')}

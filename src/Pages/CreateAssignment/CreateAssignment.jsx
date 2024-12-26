@@ -58,7 +58,7 @@ const CreateAssignment = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-md">
+    <div className="max-w-4xl my-10 mx-auto p-6 bg-white shadow-md rounded-md">
       <h2 className="text-2xl font-bold mb-4 text-gray-800">Create Assignment</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -67,7 +67,7 @@ const CreateAssignment = () => {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className="w-full p-2 border border-gray-300 rounded-md text-gray-700"
             placeholder="Enter assignment title"
           />
         </div>
@@ -76,7 +76,7 @@ const CreateAssignment = () => {
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className="w-full p-2 border border-gray-300 rounded-md text-gray-700"
             placeholder="Enter assignment description"
           ></textarea>
         </div>
@@ -86,7 +86,7 @@ const CreateAssignment = () => {
             type="number"
             value={marks}
             onChange={(e) => setMarks(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className="w-full p-2 border border-gray-300 rounded-md text-gray-700"
             placeholder="Enter marks"
           />
         </div>
@@ -96,7 +96,7 @@ const CreateAssignment = () => {
             type="url"
             value={thumbnail}
             onChange={(e) => setThumbnail(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className="w-full p-2 border border-gray-300 rounded-md text-gray-700"
             placeholder="Enter image URL"
           />
         </div>
@@ -105,7 +105,7 @@ const CreateAssignment = () => {
           <select
             value={difficulty}
             onChange={(e) => setDifficulty(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className="w-full p-2 border border-gray-300 rounded-md text-gray-700"
           >
             <option value="">Select difficulty</option>
             <option value="easy">Easy</option>
@@ -118,7 +118,7 @@ const CreateAssignment = () => {
           <DatePicker
             selected={dueDate}
             onChange={(date) => setDueDate(date)}
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className="w-full p-2 border border-gray-300 rounded-md text-gray-700"
             dateFormat="yyyy-MM-dd"
             placeholderText="Select due date"
           />
