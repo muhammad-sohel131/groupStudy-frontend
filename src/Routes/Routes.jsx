@@ -10,12 +10,19 @@ import Register from '../Pages/Register/Register'
 import PrivateRoute from './PrivateRoute'
 import AssignmentDetails from '../Pages/AssignmentDetails/AssignmentDetails'
 import UpdateAssignment from '../Pages/UpdateAssignment/UpdateAssignment'
+import NotFound from '../Pages/NotFound/NotFound'
+import Home from '../Pages/Home/Home'
 
 const Routes = createBrowserRouter([
     {
         path: "/",
         element: <Root />,
+        errorElement: <NotFound />,
         children: [
+            {
+                path: '/',
+                element: <Home />
+            },
             {
                 path: '/assignments',
                 element: <Assignment />

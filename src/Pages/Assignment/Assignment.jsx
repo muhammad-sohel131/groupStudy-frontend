@@ -15,7 +15,7 @@ const Assignments = () => {
   useEffect(() => {
     const fetchAssignments = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/assignments?difficulty=${difficulty}&search=${search}`);
+        const response = await fetch(`https://group-study-backend-six.vercel.app/assignments?difficulty=${difficulty}&search=${search}`);
         const data = await response.json();
         setAssignments(data);
       } catch (error) {
@@ -38,7 +38,7 @@ const Assignments = () => {
     if (!confirm) return;
 
     try {
-      const response = await fetch(`http://localhost:3000/assignments/${id}`, {
+      const response = await fetch(`https://group-study-backend-six.vercel.app/assignments/${id}`, {
         method: "DELETE",
       });
 

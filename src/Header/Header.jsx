@@ -23,7 +23,7 @@ export default function Header() {
     const handleLogout = () => {
         signOutUser()
             .then(e => {
-                axios.post('http://localhost:3000/logout', user, { withCredentials: true })
+                axios.post('https://group-study-backend-six.vercel.app/logout', user, { withCredentials: true })
                     .then(res => console.log(res.data))
                 toast.success("Logout Success!")
                 navigate("/");

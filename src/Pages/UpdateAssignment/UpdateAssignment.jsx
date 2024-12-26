@@ -21,7 +21,7 @@ const UpdateAssignment = () => {
     useEffect(() => {
         const fetchAssignment = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/assignments/${id}`, {
+                const response = await axios.get(`https://group-study-backend-six.vercel.app/assignments/${id}`, {
                     withCredentials: true,
                   });
                 const assignment = response.data;
@@ -64,7 +64,7 @@ const UpdateAssignment = () => {
         };
 
         try {
-            const response = await axios.put(`http://localhost:3000/assignments/${id}`, updatedAssignment, {
+            const response = await axios.put(`https://group-study-backend-six.vercel.app/assignments/${id}`, updatedAssignment, {
                 withCredentials: true,
               });
 

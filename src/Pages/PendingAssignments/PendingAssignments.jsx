@@ -15,7 +15,7 @@ const PendingAssignments = () => {
     const fetchPendingAssignments = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/submissions?status=pending`, 
+          `https://group-study-backend-six.vercel.app/submissions?status=pending`, 
           {
             withCredentials: true
           }
@@ -42,7 +42,7 @@ const PendingAssignments = () => {
     console.log(selectedAssignment)
     try {
       await axios.patch(
-        `http://localhost:3000/submissions/${selectedAssignment._id}`,
+        `https://group-study-backend-six.vercel.app/submissions/${selectedAssignment._id}`,
         {
           obtainedMarks : marks,
           feedback,

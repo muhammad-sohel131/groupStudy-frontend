@@ -39,7 +39,7 @@ const CreateAssignment = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/assignments",
+        "https://group-study-backend-six.vercel.app/assignments",
         assignmentData,
         {
           headers: {

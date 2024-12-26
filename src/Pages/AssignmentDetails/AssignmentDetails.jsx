@@ -17,7 +17,7 @@ const AssignmentDetails = () => {
   useEffect(() => {
     const fetchAssignment = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/assignments/${id}`, {
+        const response = await axios.get(`https://group-study-backend-six.vercel.app/assignments/${id}`, {
           withCredentials: true,
         });
         console.log(response.data)
@@ -48,7 +48,7 @@ const AssignmentDetails = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:3000/submissions", submissionData, {
+      const response = await axios.post("https://group-study-backend-six.vercel.app/submissions", submissionData, {
         headers: {
           "Content-Type": "application/json",
         },

@@ -22,7 +22,7 @@ export default function Login() {
           email : e.user.email
         };
         console.log(user)
-        axios.post('http://localhost:3000/jwt', user, { withCredentials: true })
+        axios.post('https://group-study-backend-six.vercel.app/jwt', user, { withCredentials: true })
           .then(res => console.log(res.data))
         navigate(form);
         toast.success('Login Success!')
@@ -39,7 +39,7 @@ export default function Login() {
         const user = {
           email : e.user.email
         };
-        axios.post('http://localhost:3000/jwt', user, { withCredentials: true })
+        axios.post('https://group-study-backend-six.vercel.app/jwt', user, { withCredentials: true })
           .then(res => console.log(res.data))
         toast.success("Loged in successfully!")
         navigate(form)
