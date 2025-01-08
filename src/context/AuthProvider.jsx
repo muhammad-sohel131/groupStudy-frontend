@@ -6,6 +6,7 @@ import auth from '../firebase/firebase.init';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
+
 const googleProvider = new GoogleAuthProvider();
 export default function AuthProvider({children}) {
 
@@ -40,7 +41,7 @@ export default function AuthProvider({children}) {
                 axios.post('https://group-study-backend-six.vercel.app/logout', user, { withCredentials: true })
                     .then(res => console.log(res.data))
                 toast.success("Logout Success!")
-                navigate("/");
+                // window.location.href = "/";
             })
             .catch(e => {
                 console.log(e)

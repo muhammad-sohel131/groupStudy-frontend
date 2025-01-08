@@ -18,14 +18,14 @@ export default function Login() {
     e.preventDefault();
     singInUser(email, password)
       .then(e => {
-        console.log(e.user);
         const user = {
-          email : e.user.email
+          email: e.user.email
         };
         axiosApi.post('/jwt', user, { withCredentials: true })
-          .then(res => console.log(res.data))
-        navigate(form);
-        toast.success('Login Success!')
+          .then(res => {
+            navigate(form);
+            toast.success('Login Success!')
+          })
       })
       .catch(err => {
         console.log(err)
@@ -37,12 +37,13 @@ export default function Login() {
     singInWithGoogle()
       .then((e) => {
         const user = {
-          email : e.user.email
+          email: e.user.email
         };
         axiosApi.post('/jwt', user, { withCredentials: true })
-          .then(res => console.log(res.data))
-        toast.success("Loged in successfully!")
-        navigate(form)
+          .then(res => {
+            toast.success("Loged in successfully!")
+            navigate(form)
+          })
       })
       .catch(err => {
         console.log(err.message);

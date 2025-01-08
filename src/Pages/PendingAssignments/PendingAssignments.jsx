@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import AuthContext from "../../context/AuthContext";
 import UseAxiosApi from "../../api/UseAxiosApi";
+import axios from "axios";
 
 const PendingAssignments = () => {
   const {user} = useContext(AuthContext);
