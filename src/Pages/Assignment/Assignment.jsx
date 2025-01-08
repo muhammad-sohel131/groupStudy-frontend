@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion"; // Updated import
 import AuthContext from "../../context/AuthContext";
+import axios from "axios";
+import UseAxiosApi from "../../api/UseAxiosApi";
 
 const Assignments = () => {
   const [difficulty, setDifficulty] = useState('');
@@ -11,13 +13,14 @@ const Assignments = () => {
   const [assignments, setAssignments] = useState([]);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const axiosApi = UseAxiosApi();
 
   // Fetch all assignments
   useEffect(() => {
     const fetchAssignments = async () => {
       try {
-        const response = await fetch(`https://group-study-backend-six.vercel.app/assignments?difficulty=${difficulty}&search=${search}`);
-        const data = await response.json();
+        const response = await axiosApi.get(`/assignments?difficulty=${difficulty}&search=${search}`);
+        const data = response.data;
         setAssignments(data);
       } catch (error) {
         console.error("Error fetching assignments:", error);
@@ -30,7 +33,7 @@ const Assignments = () => {
   // Delete Assignment
   const handleDelete = async (id, creatorEmail) => {
     if (creatorEmail !== user.email) {
-      toast.error("You are not authorized to delete this assignment.");
+      toast.error("Only Owner can delete this!");
       return;
     }
 
@@ -38,11 +41,11 @@ const Assignments = () => {
     if (!confirm) return;
 
     try {
-      const response = await fetch(`https://group-study-backend-six.vercel.app/assignments/${id}`, {
-        method: "DELETE",
-      });
-
-      if (response.ok) {
+      const response = await axiosApi.delete(`/assignments/${id}`, {
+        withCredentials: true
+      })
+      
+      if (response.status === 200) {
         setAssignments(assignments.filter((assignment) => assignment._id !== id));
         toast.success("Assignment deleted successfully!");
       } else {
@@ -57,7 +60,7 @@ const Assignments = () => {
   // Navigate to Update Page
   const handleUpdate = (id, creatorEmail) => {
     if (creatorEmail !== user.email) {
-      toast.error("You are not authorized to update this assignment.");
+      toast.error("Only Owner can update it!");
       return;
     }
     navigate(`/update-assignment/${id}`);

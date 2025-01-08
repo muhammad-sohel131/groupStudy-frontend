@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import AuthContext from "../../context/AuthContext";
+import UseAxiosApi from "../../api/UseAxiosApi";
 
 const MyAttemptedAssignment = () => {
   const { user } = useContext(AuthContext);
@@ -8,11 +8,13 @@ const MyAttemptedAssignment = () => {
   const [loading, setLoading] = useState(true);
   const userEmail = user.email;
 
+  const axiosApi = UseAxiosApi();
+
   useEffect(() => {
     const fetchSubmissions = async () => {
       try {
-        const response = await axios.get(
-          `https://group-study-backend-six.vercel.app/submissions?email=${userEmail}`,
+        const response = await axiosApi.get(
+          `/submissions?email=${userEmail}`,
           {
             withCredentials: true,
           }

@@ -7,12 +7,11 @@ import { CiMenuBurger } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
 import { CiLight } from "react-icons/ci";
 import { CiDark } from "react-icons/ci";
-import axios from 'axios';
 import { Tooltip } from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
 
 export default function Header() {
-    const { user, loading, signOutUser, theme, setTheme } = useContext(AuthContext);
+    const { user, loading, handleLogout, theme, setTheme } = useContext(AuthContext);
     const menuStyle = theme == 'dark' ? { background: 'black', color: 'white' } : { background: 'white', color: 'black' }
     const [dropDown, setDropDown] = useState(false);
     const [mobileDrop, setMobileDrop] = useState(false)
@@ -21,19 +20,6 @@ export default function Header() {
     const navigate = useNavigate();
     const handleDropdown = () => {
         setDropDown(!dropDown)
-    }
-    const handleLogout = () => {
-        signOutUser()
-            .then(e => {
-                axios.post('https://group-study-backend-six.vercel.app/logout', user, { withCredentials: true })
-                    .then(res => console.log(res.data))
-                toast.success("Logout Success!")
-                navigate("/");
-            })
-            .catch(e => {
-                console.log(e)
-                toast.error("Something Wrong")
-            })
     }
 
     if (loading) {

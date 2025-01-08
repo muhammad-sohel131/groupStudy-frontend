@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import AuthContext from "../../context/AuthContext";
+import UseAxiosApi from "../../api/UseAxiosApi";
 import axios from 'axios'
 
 const CreateAssignment = () => {
@@ -17,6 +18,7 @@ const CreateAssignment = () => {
   const { user } = useContext(AuthContext)
 
   const navigate = useNavigate();
+  const axiosApi = UseAxiosApi();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,8 +40,8 @@ const CreateAssignment = () => {
     };
 
     try {
-      const response = await axios.post(
-        "https://group-study-backend-six.vercel.app/assignments",
+      const response = await axiosApi.post(
+        "/assignments",
         assignmentData,
         {
           headers: {
@@ -49,8 +51,7 @@ const CreateAssignment = () => {
         }
       );
       
-      console.log(response)
-      if (response.statusText === 'OK') {
+      if (response.status === 200) {
         toast.success("Assignment created successfully!");
         navigate("/assignments");
       } else {

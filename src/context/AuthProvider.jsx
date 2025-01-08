@@ -3,9 +3,12 @@ import { useState, useEffect } from 'react';
 import AuthContext from './AuthContext'
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import auth from '../firebase/firebase.init';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const googleProvider = new GoogleAuthProvider();
 export default function AuthProvider({children}) {
+
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -31,6 +34,19 @@ export default function AuthProvider({children}) {
         return signOut(auth);
     }
 
+    const handleLogout = () => {
+        signOutUser()
+            .then(e => {
+                axios.post('https://group-study-backend-six.vercel.app/logout', user, { withCredentials: true })
+                    .then(res => console.log(res.data))
+                toast.success("Logout Success!")
+                navigate("/");
+            })
+            .catch(e => {
+                console.log(e)
+                toast.error("Something Wrong")
+            })
+    }
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
@@ -50,7 +66,7 @@ export default function AuthProvider({children}) {
         createUser,
         singInUser,
         singInWithGoogle,
-        signOutUser,
+        handleLogout,
         theme,
         setTheme
     }

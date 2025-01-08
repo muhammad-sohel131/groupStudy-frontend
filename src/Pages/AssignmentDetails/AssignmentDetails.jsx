@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import AuthContext from "../../context/AuthContext";
 import axios from "axios";
+import UseAxiosApi from "../../api/UseAxiosApi";
 
 const AssignmentDetails = () => {
     const {user} = useContext(AuthContext)
@@ -13,11 +14,11 @@ const AssignmentDetails = () => {
     docsLink: "",
     note: "",
   });
-
+  const axiosApi = UseAxiosApi();
   useEffect(() => {
     const fetchAssignment = async () => {
       try {
-        const response = await axios.get(`https://group-study-backend-six.vercel.app/assignments/${id}`, {
+        const response = await axiosApi.get(`/assignments/${id}`, {
           withCredentials: true,
         });
         setAssignment(response.data);
@@ -48,7 +49,7 @@ const AssignmentDetails = () => {
     };
 
     try {
-      const response = await axios.post("https://group-study-backend-six.vercel.app/submissions", submissionData, {
+      const response = await axiosApi.post("/submissions", submissionData, {
         headers: {
           "Content-Type": "application/json",
         },

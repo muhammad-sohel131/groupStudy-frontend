@@ -5,6 +5,7 @@ import AuthContext from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import UseAxiosApi from "../../api/UseAxiosApi";
 
 const UpdateAssignment = () => {
     const { user } = useContext(AuthContext);
@@ -16,12 +17,14 @@ const UpdateAssignment = () => {
     const [dueDate, setDueDate] = useState(null);
     const [loading, setLoading] = useState(true);
     const { id } = useParams();
+
     const navigate = useNavigate();
+    const axiosApi = UseAxiosApi();
 
     useEffect(() => {
         const fetchAssignment = async () => {
             try {
-                const response = await axios.get(`https://group-study-backend-six.vercel.app/assignments/${id}`, {
+                const response = await axiosApi.get(`/assignments/${id}`, {
                     withCredentials: true,
                   });
                 const assignment = response.data;
@@ -64,7 +67,7 @@ const UpdateAssignment = () => {
         };
 
         try {
-            const response = await axios.put(`https://group-study-backend-six.vercel.app/assignments/${id}`, updatedAssignment, {
+            const response = await axiosApi.put(`/assignments/${id}`, updatedAssignment, {
                 withCredentials: true,
               });
 
@@ -89,7 +92,7 @@ const UpdateAssignment = () => {
     }
 
     return (
-        <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-md">
+        <div className="max-w-4xl my-10 mx-auto p-6 text-gray-900 bg-white shadow-md rounded-md">
             <h2 className="text-2xl font-bold mb-4 text-gray-800">Update Assignment</h2>
             <form onSubmit={handleUpdate}>
                 <div className="mb-4">

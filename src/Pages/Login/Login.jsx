@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import AuthContext from '../../context/AuthContext';
 import { toast } from 'react-toastify';
-import axios from 'axios'
+import UseAxiosApi from '../../api/UseAxiosApi';
 
 export default function Login() {
   const { singInWithGoogle, singInUser } = useContext(AuthContext);
@@ -12,7 +12,8 @@ export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const form = location.state || '/';
-  console.log(form)
+
+  const axiosApi = UseAxiosApi();
   const handleLogin = (e) => {
     e.preventDefault();
     singInUser(email, password)
@@ -21,8 +22,7 @@ export default function Login() {
         const user = {
           email : e.user.email
         };
-        console.log(user)
-        axios.post('https://group-study-backend-six.vercel.app/jwt', user, { withCredentials: true })
+        axiosApi.post('/jwt', user, { withCredentials: true })
           .then(res => console.log(res.data))
         navigate(form);
         toast.success('Login Success!')
@@ -39,7 +39,7 @@ export default function Login() {
         const user = {
           email : e.user.email
         };
-        axios.post('https://group-study-backend-six.vercel.app/jwt', user, { withCredentials: true })
+        axiosApi.post('/jwt', user, { withCredentials: true })
           .then(res => console.log(res.data))
         toast.success("Loged in successfully!")
         navigate(form)

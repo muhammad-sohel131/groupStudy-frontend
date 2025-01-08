@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import AuthContext from "../../context/AuthContext";
+import UseAxiosApi from "../../api/UseAxiosApi";
 
 const PendingAssignments = () => {
   const {user} = useContext(AuthContext);
@@ -11,11 +12,14 @@ const PendingAssignments = () => {
   const [feedback, setFeedback] = useState("");
   const userEmail = user.email; 
 
+  const axiosApi = UseAxiosApi();
+
+  
   useEffect(() => {
     const fetchPendingAssignments = async () => {
       try {
-        const response = await axios.get(
-          `https://group-study-backend-six.vercel.app/submissions?status=pending`, 
+        const response = await axiosApi.get(
+          `/submissions?status=pending`, 
           {
             withCredentials: true
           }
@@ -39,10 +43,9 @@ const PendingAssignments = () => {
       alert("Please fill in both marks and feedback!");
       return;
     }
-    console.log(selectedAssignment)
     try {
-      await axios.patch(
-        `https://group-study-backend-six.vercel.app/submissions/${selectedAssignment._id}`,
+      await axiosApi.patch(
+        `/submissions/${selectedAssignment._id}`,
         {
           obtainedMarks : marks,
           feedback,
