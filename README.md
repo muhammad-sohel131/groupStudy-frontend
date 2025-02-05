@@ -3,6 +3,11 @@
 ## Purpose
 The **Group Study** is a user-friendly platform designed to simplify group learning and assignment submissions. It provides an intuitive interface for users to manage assignments, track submissions, and collaborate effectively.
 
+## Some Screenshorts
+<div align="center">
+  <img height="450" src="https://i.ibb.co.com/6775bVxY/group-study.png"  />
+</div> 
+
 ## Live URL
 [Live Application](https://group-study-b6d75.web.app)
 
@@ -35,4 +40,36 @@ The **Group Study** is a user-friendly platform designed to simplify group learn
 - `react-tooltip` - For tooltips on hover.
 - `motion` - For showing Assingment smothely
 
+## 🛠️ How to Set Up the Project  
 
+Follow these steps to run the **LoveLink** project locally.  
+
+### 1️⃣ Clone the Repository  
+
+```sh
+git clone https://github.com/muhammad-sohel131/groupStudy-frontend.git
+cd groupStudy-frontend
+```
+### 2️⃣ Install Dependencies
+```sh
+npm install
+```
+### 3️⃣ Set Up Environment Variables
+- VITE_apiKey=***
+- VITE_authDomain=***
+- VITE_projectId=***
+- VITE_storageBucket=***
+- VITE_messagingSenderId=***
+- VITE_appId=***
+
+### 4️⃣ Start the Development Server
+```sh
+npm run dev
+```
+### 4️⃣ Run the Backend Server
+```sh
+git clone https://github.com/muhammad-sohel131/groupStudy-backend.git
+cd groupStudy-backend
+npm install
+npm start
+```
