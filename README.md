@@ -42,7 +42,7 @@ The **Group Study** is a user-friendly platform designed to simplify group learn
 
 ## 🛠️ How to Set Up the Project  
 
-Follow these steps to run the **LoveLink** project locally.  
+Follow these steps to run the **Group Study** project locally.  
 
 ### 1️⃣ Clone the Repository  
 
