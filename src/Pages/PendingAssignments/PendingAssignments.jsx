@@ -3,6 +3,7 @@ import AuthContext from "../../context/AuthContext";
 import UseAxiosApi from "../../api/UseAxiosApi";
 import { Helmet } from "react-helmet";
 import axios from "axios";
+import Loading from "../../Loading/Loading";
 
 const PendingAssignments = () => {
   const { user } = useContext(AuthContext);
@@ -67,11 +68,7 @@ const PendingAssignments = () => {
   };
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-screen bg-gray-50">
-        <p className="text-xl text-brand font-semibold">Loading assignments...</p>
-      </div>
-    );
+    return <Loading />
   }
 
   return (

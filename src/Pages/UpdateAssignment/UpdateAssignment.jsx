@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import { toast } from "react-toastify";
@@ -7,6 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import UseAxiosApi from "../../api/UseAxiosApi";
 import { Helmet } from "react-helmet";
+import Loading from "../../Loading/Loading";
 
 const UpdateAssignment = () => {
     const { user } = useContext(AuthContext);
@@ -85,11 +85,7 @@ const UpdateAssignment = () => {
     };
 
     if (loading) {
-        return (
-            <div className="flex items-center justify-center h-screen bg-gray-50">
-                <p className="text-xl text-brand font-semibold">Loading assignment data...</p>
-            </div>
-        );
+        return <Loading />
     }
 
     return (

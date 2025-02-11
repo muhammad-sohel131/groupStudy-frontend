@@ -6,6 +6,7 @@ import AuthContext from "../../context/AuthContext";
 import axios from "axios";
 import UseAxiosApi from "../../api/UseAxiosApi";
 import {Helmet} from "react-helmet";
+import Loading from "../../Loading/Loading";
 
 const Assignments = () => {
   const [difficulty, setDifficulty] = useState('');
@@ -72,6 +73,9 @@ const Assignments = () => {
     navigate(`/assignments/${id}`);
   };
 
+  if(!assignments.length){
+    return <Loading />
+  }
   return (
     <div className="max-w-7xl mx-auto p-6">
       <Helmet>

@@ -5,6 +5,7 @@ import AuthContext from "../../context/AuthContext";
 import axios from "axios";
 import UseAxiosApi from "../../api/UseAxiosApi";
 import { Helmet } from "react-helmet";
+import Loading from "../../Loading/Loading";
 
 const AssignmentDetails = () => {
     const {user} = useContext(AuthContext)
@@ -72,7 +73,7 @@ const AssignmentDetails = () => {
     }
   };
 
-  if (!assignment) return <div>Loading...</div>;
+  if (!assignment) return <Loading />;
 
   return (
     <div className="max-w-4xl mx-auto p-6 my-10 bg-white text-gray-800 shadow-md rounded-md">

@@ -8,6 +8,7 @@ import { CiLight } from "react-icons/ci";
 import { CiDark } from "react-icons/ci";
 import { Tooltip } from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
+import Loading from '../Loading/HeaderLoading';
 
 export default function Header() {
     const [isStikcy, setSticky] = useState(false)
@@ -39,9 +40,8 @@ export default function Header() {
     }
 
     if (loading) {
-        return <h2>Loading...</h2>
+        return <Loading />
     }
-
     return (
         <nav className={`border-b top-0 transition-all duration-500 border-gray-100 sticky ${isStikcy ? "py-2" : 'py-4'} ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
             <div className='flex justify-between items-center cs-container relative'>

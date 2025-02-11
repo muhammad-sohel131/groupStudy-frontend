@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/AuthContext";
 import UseAxiosApi from "../../api/UseAxiosApi";
 import { Helmet } from "react-helmet";
+import Loading from "../../Loading/Loading";
 
 const MyAttemptedAssignment = () => {
   const { user } = useContext(AuthContext);
@@ -32,11 +33,7 @@ const MyAttemptedAssignment = () => {
   }, [userEmail]);
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-screen bg-gray-50">
-        <p className="text-xl text-brand font-semibold">Loading assignments...</p>
-      </div>
-    );
+    return <Loading />
   }
 
   return (
