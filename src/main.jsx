@@ -8,7 +8,7 @@ import AuthProvider from './context/AuthProvider'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
-    <RouterProvider router={Routes} />
+      <RouterProvider router={Routes} />
     </AuthProvider>
   </StrictMode>,
 )

@@ -1,25 +1,26 @@
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/AuthContext";
 import UseAxiosApi from "../../api/UseAxiosApi";
+import { Helmet } from "react-helmet";
 import axios from "axios";
 
 const PendingAssignments = () => {
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [pendingAssignments, setPendingAssignments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedAssignment, setSelectedAssignment] = useState(null);
   const [marks, setMarks] = useState("");
   const [feedback, setFeedback] = useState("");
-  const userEmail = user.email; 
+  const userEmail = user.email;
 
   const axiosApi = UseAxiosApi();
 
-  
+
   useEffect(() => {
     const fetchPendingAssignments = async () => {
       try {
         const response = await axiosApi.get(
-          `/submissions?status=pending`, 
+          `/submissions?status=pending`,
           {
             withCredentials: true
           }
@@ -47,12 +48,12 @@ const PendingAssignments = () => {
       await axiosApi.patch(
         `/submissions/${selectedAssignment._id}`,
         {
-          obtainedMarks : marks,
+          obtainedMarks: marks,
           feedback,
           status: "completed",
         },
         {
-          withCredentials:true
+          withCredentials: true
         }
       );
       alert("Marks submitted successfully!");
@@ -75,6 +76,9 @@ const PendingAssignments = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6">
+      <Helmet>
+        <title>Pending Assignments - Group Study</title>
+      </Helmet>
       <h2 className="text-3xl font-bold text-brand mb-6">Pending Assignments</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">

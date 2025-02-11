@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import AuthContext from "../../context/AuthContext";
 import UseAxiosApi from "../../api/UseAxiosApi";
+import { Helmet } from "react-helmet";
 import axios from 'axios'
 
 const CreateAssignment = () => {
@@ -65,6 +66,9 @@ const CreateAssignment = () => {
 
   return (
     <div className="max-w-4xl my-10 mx-auto p-6 bg-white shadow-md rounded-md">
+      <Helmet>
+        <title>Create Assignment - Group Study</title>
+      </Helmet>
       <h2 className="text-2xl font-bold mb-4 text-gray-800">Create Assignment</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast} from 'react-toastify';
 import AuthContext from '../../context/AuthContext';
 import { updateProfile } from "firebase/auth";
+import { Helmet } from 'react-helmet';
 
 const Register = () => {
   const {createUser} = useContext(AuthContext);
@@ -66,6 +67,9 @@ const Register = () => {
 
   return (
     <div className="flex justify-center items-center py-10">
+      <Helmet>
+                    <title>Register - Group Study</title>
+                  </Helmet>
       <div className="bg-white p-8 rounded-md shadow-md w-full max-w-md border border-gray-200">
         <h1 className="text-2xl font-bold text-center mb-4 text-[#1AA260]">Register</h1>
         <form onSubmit={handleRegister} className="space-y-4">

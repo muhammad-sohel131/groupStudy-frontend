@@ -5,6 +5,7 @@ import { motion } from "framer-motion"; // Updated import
 import AuthContext from "../../context/AuthContext";
 import axios from "axios";
 import UseAxiosApi from "../../api/UseAxiosApi";
+import {Helmet} from "react-helmet";
 
 const Assignments = () => {
   const [difficulty, setDifficulty] = useState('');
@@ -73,6 +74,9 @@ const Assignments = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
+      <Helmet>
+        <title>Assignments - Group Study</title>
+      </Helmet>
       <h2 className="text-2xl font-bold mb-6">All Assignments</h2>
       {/* Filter and Search Section */}
       <div className="p-6 mb-10 bg-gray-100 rounded-md shadow-md">

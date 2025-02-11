@@ -4,6 +4,7 @@ import { useState } from 'react';
 import AuthContext from '../../context/AuthContext';
 import { toast } from 'react-toastify';
 import UseAxiosApi from '../../api/UseAxiosApi';
+import { Helmet } from 'react-helmet';
 
 export default function Login() {
   const { singInWithGoogle, singInUser } = useContext(AuthContext);
@@ -53,6 +54,9 @@ export default function Login() {
 
   return (
     <div className="flex justify-center items-center py-10">
+      <Helmet>
+              <title>Login - Group Study</title>
+            </Helmet>
       <div className="bg-white p-8 rounded-md shadow-md w-full max-w-md">
         <h1 className="text-2xl text-[#1AA260] font-bold text-center mb-4">Login</h1>
         <form onSubmit={handleLogin} className="space-y-4">

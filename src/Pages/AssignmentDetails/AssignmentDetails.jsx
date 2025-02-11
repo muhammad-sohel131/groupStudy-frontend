@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import AuthContext from "../../context/AuthContext";
 import axios from "axios";
 import UseAxiosApi from "../../api/UseAxiosApi";
+import { Helmet } from "react-helmet";
 
 const AssignmentDetails = () => {
     const {user} = useContext(AuthContext)
@@ -75,6 +76,9 @@ const AssignmentDetails = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6 my-10 bg-white text-gray-800 shadow-md rounded-md">
+      <Helmet>
+        <title>{assignment.title} - Group Study</title>
+      </Helmet>
       <h2 className="text-2xl font-bold text-gray-800">{assignment.title}</h2>
       <img
         src={assignment.thumbnail}

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/AuthContext";
 import UseAxiosApi from "../../api/UseAxiosApi";
+import { Helmet } from "react-helmet";
 
 const MyAttemptedAssignment = () => {
   const { user } = useContext(AuthContext);
@@ -18,7 +19,7 @@ const MyAttemptedAssignment = () => {
           {
             withCredentials: true,
           }
-        );        
+        );
         setAssignments(response.data);
         setLoading(false);
       } catch (error) {
@@ -40,6 +41,9 @@ const MyAttemptedAssignment = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6">
+      <Helmet>
+        <title>My Submitted Assignments - Group Study</title>
+      </Helmet>
       <h2 className="text-3xl font-bold text-brand mb-6">My Submitted Assignments</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">

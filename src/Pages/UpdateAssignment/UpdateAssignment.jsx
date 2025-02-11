@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import UseAxiosApi from "../../api/UseAxiosApi";
+import { Helmet } from "react-helmet";
 
 const UpdateAssignment = () => {
     const { user } = useContext(AuthContext);
@@ -93,6 +94,9 @@ const UpdateAssignment = () => {
 
     return (
         <div className="max-w-4xl my-10 mx-auto p-6 text-gray-900 bg-white shadow-md rounded-md">
+            <Helmet>
+                    <title>Update Assignment - Group Study</title>
+                  </Helmet>
             <h2 className="text-2xl font-bold mb-4 text-gray-800">Update Assignment</h2>
             <form onSubmit={handleUpdate}>
                 <div className="mb-4">

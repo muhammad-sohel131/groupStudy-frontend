@@ -8,9 +8,10 @@ import axios from 'axios';
 
 
 const googleProvider = new GoogleAuthProvider();
-export default function AuthProvider({children}) {
 
 
+export default function AuthProvider({ children }) {
+    
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [theme, setTheme] = useState('light');
@@ -71,9 +72,9 @@ export default function AuthProvider({children}) {
         theme,
         setTheme
     }
-  return (
-    <AuthContext.Provider value={authInfo}>
-        {children}
-    </AuthContext.Provider>
-  )
+    return (
+        <AuthContext.Provider value={authInfo}>
+            {children}
+        </AuthContext.Provider>
+    )
 }

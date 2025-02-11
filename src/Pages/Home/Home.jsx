@@ -1,8 +1,12 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   return (
     <div>
+      <Helmet>
+              <title>Home - Group Study</title>
+            </Helmet>
       {/* Banner Section */}
       <section className="bg-[#1AA260] text-white py-20">
         <div className="container mx-auto text-center">
