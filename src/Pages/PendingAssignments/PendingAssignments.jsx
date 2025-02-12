@@ -4,6 +4,7 @@ import UseAxiosApi from "../../api/UseAxiosApi";
 import { Helmet } from "react-helmet";
 import axios from "axios";
 import Loading from "../../Loading/Loading";
+import { toast } from "react-toastify";
 
 const PendingAssignments = () => {
   const { user } = useContext(AuthContext);
@@ -42,8 +43,12 @@ const PendingAssignments = () => {
 
   const handleGiveMarks = async () => {
     if (!marks || !feedback) {
-      alert("Please fill in both marks and feedback!");
+      toast.warning("Please fill in both marks and feedback!");
       return;
+    }
+    if(marks > selectedAssignment.marks){
+      toast.warning(`Marks should be less than ${selectedAssignment.marks}`)
+      return
     }
     try {
       await axiosApi.patch(
@@ -57,7 +62,7 @@ const PendingAssignments = () => {
           withCredentials: true
         }
       );
-      alert("Marks submitted successfully!");
+      toast.success("Marks submitted successfully!")
       setPendingAssignments((prev) =>
         prev.filter((assignment) => assignment._id !== selectedAssignment._id)
       );
