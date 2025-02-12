@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion"; // Updated import
 import AuthContext from "../../context/AuthContext";
-import axios from "axios";
 import UseAxiosApi from "../../api/UseAxiosApi";
 import {Helmet} from "react-helmet";
 import Loading from "../../Loading/Loading";

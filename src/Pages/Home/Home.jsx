@@ -1,5 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
+import LevelAssignments from "./LevelAssignments/LevelAssignments";
 
 const Home = () => {
   return (
@@ -16,10 +18,15 @@ const Home = () => {
             Collaborate, learn, and grow with our platform. Simplifying group studies and assignments.
           </p>
           <button className="bg-white text-[#1AA260] px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition">
-            Get Started
+            <Link to='/assignments'>Get Started</Link>
           </button>
         </div>
       </section>
+
+      {/* Recent Easiest Assignments */}
+      <LevelAssignments level='easy' />
+      <LevelAssignments level='medium' />
+      <LevelAssignments level='hard' />
 
       {/* Feature Section */}
       <section className="py-16">
