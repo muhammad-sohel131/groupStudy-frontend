@@ -53,7 +53,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex justify-center items-center py-10">
+    <div className="flex cs-container justify-center items-center py-10">
       <Helmet>
               <title>Login - Group Study</title>
             </Helmet>

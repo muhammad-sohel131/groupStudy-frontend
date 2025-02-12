@@ -77,7 +77,7 @@ const Assignments = () => {
     return <Loading />
   }
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <div className="cs-container mx-auto py-6">
       <Helmet>
         <title>Assignments - Group Study</title>
       </Helmet>

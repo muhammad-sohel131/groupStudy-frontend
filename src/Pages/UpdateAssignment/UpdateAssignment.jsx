@@ -89,7 +89,7 @@ const UpdateAssignment = () => {
     }
 
     return (
-        <div className="max-w-4xl my-10 mx-auto p-6 text-gray-900 bg-white shadow-md rounded-md">
+        <div className="cs-container my-10 mx-auto p-6 text-gray-900 bg-white shadow-md rounded-md">
             <Helmet>
                     <title>Update Assignment - Group Study</title>
                   </Helmet>

@@ -65,7 +65,7 @@ const CreateAssignment = () => {
   };
 
   return (
-    <div className="max-w-4xl my-10 mx-auto p-6 bg-white shadow-md rounded-md">
+    <div className="cs-container my-10 mx-auto p-6 bg-white shadow-md rounded-md">
       <Helmet>
         <title>Create Assignment - Group Study</title>
       </Helmet>

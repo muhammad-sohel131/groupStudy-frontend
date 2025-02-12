@@ -8,9 +8,10 @@ const Home = () => {
               <title>Home - Group Study</title>
             </Helmet>
       {/* Banner Section */}
-      <section className="bg-[#1AA260] text-white py-20">
-        <div className="container mx-auto text-center">
-          <h1 className="text-4xl font-bold mb-4">Welcome to Group Study</h1>
+      <section style={{backgroundImage: 'url(./hero1.jpg)', backgroundPosition: 'center'}} className="bg-[rgba(0,0,0,.5)] bg-no-repeat bg-cover bg-blend-overlay text-white py-20 min-h-[75vh] flex items-center">
+        <div className="cs-container mx-auto text-center">
+          <h1 className="lg:text-4xl text-3xl font-bold mb-4">Unlock Knowledge with Group Learning
+          </h1>
           <p className="text-lg mb-6">
             Collaborate, learn, and grow with our platform. Simplifying group studies and assignments.
           </p>
@@ -22,7 +23,7 @@ const Home = () => {
 
       {/* Feature Section */}
       <section className="py-16">
-        <div className="container mx-auto text-center">
+        <div className="cs-container mx-auto text-center">
           <h2 className="text-3xl font-bold mb-10">Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Feature 1 */}
@@ -46,7 +47,7 @@ const Home = () => {
 
       {/* FAQ Section */}
       <section className="bg-gray-100 text-gray-800 py-16">
-        <div className="container mx-auto">
+        <div className="cs-container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-10">Frequently Asked Questions</h2>
           <div className="space-y-6 max-w-4xl mx-auto">
             {/* FAQ 1 */}

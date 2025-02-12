@@ -76,7 +76,7 @@ const AssignmentDetails = () => {
   if (!assignment) return <Loading />;
 
   return (
-    <div className="max-w-4xl mx-auto p-6 my-10 bg-white text-gray-800 shadow-md rounded-md">
+    <div className="cs-container mx-auto px-4 py-6 my-10 bg-white text-gray-800 shadow-md rounded-md">
       <Helmet>
         <title>{assignment.title} - Group Study</title>
       </Helmet>

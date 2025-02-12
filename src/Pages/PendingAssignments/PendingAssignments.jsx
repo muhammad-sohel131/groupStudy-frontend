@@ -72,7 +72,7 @@ const PendingAssignments = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-6">
+    <div className="cs-container mx-auto py-6">
       <Helmet>
         <title>Pending Assignments - Group Study</title>
       </Helmet>
