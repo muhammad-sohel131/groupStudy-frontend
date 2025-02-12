@@ -41,7 +41,7 @@ const MyAttemptedAssignment = () => {
       <Helmet>
         <title>My Submitted Assignments - Group Study</title>
       </Helmet>
-      <h2 className="text-3xl font-bold text-brand mb-6">My Submitted Assignments</h2>
+      <h2 className="text-2xl font-bold mb-6">My Submitted Assignments</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
           <thead className="bg-[#1AA260] text-white">
