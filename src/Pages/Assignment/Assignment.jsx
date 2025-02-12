@@ -6,6 +6,11 @@ import AuthContext from "../../context/AuthContext";
 import UseAxiosApi from "../../api/UseAxiosApi";
 import { Helmet } from "react-helmet";
 import Loading from "../../Loading/Loading";
+import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
+import { Button } from "primereact/button";
+import "primereact/resources/themes/lara-light-blue/theme.css"; // Choose your theme
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
 
 const Assignments = () => {
   const [difficulty, setDifficulty] = useState('');
@@ -32,19 +37,7 @@ const Assignments = () => {
   }, [difficulty, search]);
 
   // Delete Assignment
-  const handleDelete = async (id, creatorEmail) => {
-    if (!user) {
-      toast.warning("Please, Login to Perform this Actions.")
-      return
-    }
-    if (creatorEmail !== user.email) {
-      toast.error("Only Owner can delete this!");
-      return;
-    }
-
-    const confirm = window.confirm("Are you sure you want to delete this assignment?");
-    if (!confirm) return;
-
+  const handleConfirmDelete = async () => {
     try {
       const response = await axiosApi.delete(`/assignments/${id}`, {
         withCredentials: true
@@ -57,9 +50,30 @@ const Assignments = () => {
         throw new Error("Failed to delete assignment.");
       }
     } catch (error) {
-      toast.error("Error deleting assignment.");
       console.error(error);
     }
+  }
+  const handleDelete = async (id, creatorEmail) => {
+    if (!user) {
+      toast.warning("Please, Login to Perform this Actions.")
+      return
+    }
+    if (creatorEmail !== user.email) {
+      toast.error("Only Owner can delete this!");
+      return;
+    }
+
+    confirmDialog({
+      message: "Are you sure you want to delete this assignment?",
+      header: "Confirm Deletion",
+      icon: "pi pi-exclamation-triangle",
+      acceptLabel: "Yes, Delete",
+      rejectLabel: "Cancel",
+      acceptClassName: "text-white bg-[#F4B503] px-5 py-2 mx-5 rounded-lg font-semibold",
+      rejectClassName: "text-white bg-[#1AA260] px-5 py-2 rounded-lg font-semibold",
+      accept: () => handleConfirmDelete(),  
+      reject: () => console.log("Deletion canceled"),
+    });
   };
 
   // Navigate to Update Page
@@ -85,6 +99,7 @@ const Assignments = () => {
   }
   return (
     <div className="cs-container mx-auto py-6">
+      <ConfirmDialog />
       <Helmet>
         <title>Assignments - Group Study</title>
       </Helmet>

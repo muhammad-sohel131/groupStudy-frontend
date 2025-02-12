@@ -1,10 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { motion } from "framer-motion"; // Updated import
-import AuthContext from "../../../context/AuthContext";
+import { motion } from "framer-motion";
 import UseAxiosApi from "../../../api/UseAxiosApi";
-import {Helmet} from "react-helmet";
 import Loading from "../../../Loading/Loading";
 
 
@@ -16,7 +13,6 @@ export default function LevelAssignments({level}) {
     }
 
   const [assignments, setAssignments] = useState([]);
-  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const axiosApi = UseAxiosApi();
 
