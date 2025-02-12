@@ -93,7 +93,7 @@ const UpdateAssignment = () => {
             <Helmet>
                     <title>Update Assignment - Group Study</title>
                   </Helmet>
-            <h2 className="text-2xl font-bold mb-4 text-gray-800">Update Assignment</h2>
+            <h2 className="text-2xl font-bold mb-6">Update Assignment</h2>
             <form onSubmit={handleUpdate}>
                 <div className="mb-4">
                     <label className="block font-medium text-gray-700">Title</label>
@@ -163,7 +163,7 @@ const UpdateAssignment = () => {
                 </div>
                 <button
                     type="submit"
-                    className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-500 transition duration-200"
+                    className="w-full bg-[#1AA260] text-white py-2 px-4 rounded-md"
                 >
                     Update Assignment
                 </button>
