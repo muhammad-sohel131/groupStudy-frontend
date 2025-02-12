@@ -1,16 +1,17 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 import AuthContext from '../../context/AuthContext';
 import { updateProfile } from "firebase/auth";
 import { Helmet } from 'react-helmet';
+import { imageUpload } from '../../utils/imageUpload';
 
 const Register = () => {
-  const {createUser} = useContext(AuthContext);
+  const { createUser } = useContext(AuthContext);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [photoURL, setPhotoURL] = useState('');
+  const [image, setImage] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
@@ -21,9 +22,14 @@ const Register = () => {
     return upperCase && lowerCase && minLength;
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImage(file);
+    }
+  };
   const handleRegister = (e) => {
     e.preventDefault();
-  
     // Validate password
     if (!validatePassword(password)) {
       toast.error(
@@ -31,45 +37,55 @@ const Register = () => {
       );
       return;
     }
-  
-    // Perform registration
-    createUser(email, password)
-      .then((result) => {
-        const user = result.user;
-  
-        // Update user profile with display name
-        updateProfile(user, {
-          displayName: name || "New User",
-          photoURL: photoURL
-        })
-          .then(() => {
-            toast.success("Registration successful!");
-            console.log("User registered with profile:", user);
-            navigate("/login");
+
+    imageUpload(image)
+      .then(res => {
+        console.log(res.data)
+        const imageUrl = res.data.display_url
+        console.log(imageUrl)
+        // Perform registration
+        createUser(email, password)
+          .then((result) => {
+            const user = result.user;
+
+            // Update user profile with display name
+            updateProfile(user, {
+              displayName: name || "New User",
+              photoURL: imageUrl
+            })
+              .then(() => {
+                toast.success("Registration successful!");
+                console.log("User registered with profile:", user);
+                navigate("/login");
+              })
+              .catch((err) => {
+                console.error("Profile update error:", err);
+                toast.error("Failed to update profile.");
+              });
           })
           .catch((err) => {
-            console.error("Profile update error:", err);
-            toast.error("Failed to update profile.");
+            console.error("Registration error:", err);
+            if (err.code === "auth/email-already-in-use") {
+              toast.error("Email is already registered.");
+            } else if (err.code === "auth/weak-password") {
+              toast.error("Password is too weak.");
+            } else {
+              toast.error("Something went wrong. Please try again.");
+            }
           });
       })
-      .catch((err) => {
-        console.error("Registration error:", err);
-        if (err.code === "auth/email-already-in-use") {
-          toast.error("Email is already registered.");
-        } else if (err.code === "auth/weak-password") {
-          toast.error("Password is too weak.");
-        } else {
-          toast.error("Something went wrong. Please try again.");
-        }
-      });
+      .catch(err => {
+        console.log(err)
+      })
+
   };
-  
+
 
   return (
     <div className="flex cs-container justify-center items-center py-10">
       <Helmet>
-                    <title>Register - Group Study</title>
-                  </Helmet>
+        <title>Register - Group Study</title>
+      </Helmet>
       <div className="bg-white p-8 rounded-md shadow-md w-full max-w-md border border-gray-200">
         <h1 className="text-2xl font-bold text-center mb-4 text-[#1AA260]">Register</h1>
         <form onSubmit={handleRegister} className="space-y-4">
@@ -98,15 +114,8 @@ const Register = () => {
             />
           </div>
           <div>
-            <label htmlFor="photoURL" className="block text-sm font-medium text-gray-700">Photo URL</label>
-            <input
-              type="url"
-              id="photoURL"
-              className="w-full px-3 py-2 border rounded-md text-gray-700"
-              placeholder="Enter your photo URL"
-              value={photoURL}
-              onChange={(e) => setPhotoURL(e.target.value)}
-            />
+            <label htmlFor="photo" className="block text-sm font-medium text-gray-700">Upload Photo</label>
+            <input onChange={handleImageChange} className='rounded-lg border border-[#e57339] mb-5 p-2' type="file" />
           </div>
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>

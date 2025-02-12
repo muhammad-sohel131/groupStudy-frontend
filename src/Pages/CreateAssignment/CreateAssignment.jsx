@@ -7,6 +7,7 @@ import AuthContext from "../../context/AuthContext";
 import UseAxiosApi from "../../api/UseAxiosApi";
 import { Helmet } from "react-helmet";
 import axios from 'axios'
+import { imageUpload } from "../../utils/imageUpload";
 
 const CreateAssignment = () => {
   const [title, setTitle] = useState("");
@@ -20,7 +21,12 @@ const CreateAssignment = () => {
 
   const navigate = useNavigate();
   const axiosApi = UseAxiosApi();
-
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setThumbnail(file);
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -29,17 +35,19 @@ const CreateAssignment = () => {
       return;
     }
 
+    const res = await imageUpload(thumbnail);
+
     const assignmentData = {
       title,
       description,
       marks: parseInt(marks, 10),
-      thumbnail,
+      thumbnail: res.data.display_url,
       difficulty,
       dueDate: dueDate.toISOString(),
       email: user.email,
       name: user.displayName
     };
-
+    
     try {
       const response = await axiosApi.post(
         "/assignments",
@@ -51,7 +59,7 @@ const CreateAssignment = () => {
           withCredentials: true,
         }
       );
-      
+
       if (response.status === 200) {
         toast.success("Assignment created successfully!");
         navigate("/assignments");
@@ -69,7 +77,7 @@ const CreateAssignment = () => {
       <Helmet>
         <title>Create Assignment - Group Study</title>
       </Helmet>
-      <h2 className="text-2xl font-bold mb-4 text-gray-800">Create Assignment</h2>
+      <h2 className="text-2xl font-bold mb-6">Create Assignment</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block font-medium text-gray-700">Title</label>
@@ -101,15 +109,8 @@ const CreateAssignment = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block font-medium text-gray-700">Thumbnail Image URL</label>
-          <input
-            type="url"
-            value={thumbnail}
-            onChange={(e) => setThumbnail(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md text-gray-700"
-            placeholder="Enter image URL"
-            required
-          />
+          <label className="block font-medium text-gray-700">Select Thumbnail Image</label>
+          <input onChange={handleImageChange} className='rounded-lg border border-[#e57339] mb-5 p-2' type="file" />
         </div>
         <div className="mb-4">
           <label className="block font-medium text-gray-700">Difficulty Level</label>

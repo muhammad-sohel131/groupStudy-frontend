@@ -46,7 +46,7 @@ export default function Header() {
     return (
         <nav className={`border-b z-50 top-0 transition-all duration-500 border-gray-100 sticky ${isStikcy ? "py-2" : 'py-4'} ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
             <div className='flex justify-between items-center cs-container relative'>
-                <h2 className='text-[#F4B503] text-[30px] font-extrabold'><Link to='/'>Group Study</Link></h2>
+                <h2 className='text-[#F4B503] md:text-[30px] text-[25px] font-extrabold'><Link to='/'>Group Study</Link></h2>
                 <ul className='lg:flex hidden gap-5 items-center'>
                     <li><NavLink to='/' className="text-lg hover:text-[#f4b503]">Home</NavLink></li>
                     <li><NavLink to='/assignments' className="text-lg hover:text-[#f4b503]">Assignments</NavLink></li>
@@ -65,7 +65,7 @@ export default function Header() {
                     </li>
                 </ul>
 
-                <div className='flex lg:hidden gap-10 items-center'>
+                <div className='flex lg:hidden gap-5 items-center'>
                     <div onClick={() => handleMobileMenu()}>
                         {!mobileDrop ? <CiMenuBurger className='text-lg' /> : <IoMdClose className='text-lg' />}
                     </div>
