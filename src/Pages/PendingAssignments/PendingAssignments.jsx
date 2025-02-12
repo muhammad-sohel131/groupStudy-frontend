@@ -79,7 +79,7 @@ const PendingAssignments = () => {
       <h2 className="text-3xl font-bold text-brand mb-6">Pending Assignments</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-          <thead className="bg-brand text-black">
+          <thead className="bg-[#1AA260] text-white">
             <tr>
               <th className="text-left px-6 py-4 font-medium uppercase">Title</th>
               <th className="text-left px-6 py-4 font-medium uppercase">Marks</th>
@@ -91,7 +91,7 @@ const PendingAssignments = () => {
             {pendingAssignments.map((assignment) => (
               <tr
                 key={assignment._id}
-                className="border-b text-gray-800 hover:bg-gray-100 transition duration-150"
+                className="border-b text-gray-800 hover:bg-[rgba(26,162,96,.1)] transition duration-150"
               >
                 <td className="px-6 py-4">{assignment.title}</td>
                 <td className="px-6 py-4">{assignment.marks}</td>
@@ -99,7 +99,7 @@ const PendingAssignments = () => {
                 <td className="px-6 py-4">
                   <button
                     onClick={() => setSelectedAssignment(assignment)}
-                    className="bg-brand text-black px-4 py-2 rounded hover:bg-brand-dark"
+                    className="text-white bg-[#1AA260] px-6 py-3 rounded-lg font-semibold"
                   >
                     Give Marks
                   </button>
@@ -146,16 +146,16 @@ const PendingAssignments = () => {
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand"
               ></textarea>
             </div>
-            <div className="flex justify-end mt-6">
+            <div className="flex gap-5 justify-end mt-6">
               <button
                 onClick={handleGiveMarks}
-                className="bg-brand text-black px-4 py-2 rounded hover:bg-brand-dark mr-2"
+                className="text-white bg-[#1AA260] px-6 py-3 rounded-lg font-semibold"
               >
                 Submit
               </button>
               <button
                 onClick={() => setSelectedAssignment(null)}
-                className="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400"
+                className="text-white bg-[#F4B503] px-6 py-3 rounded-lg font-semibold"
               >
                 Cancel
               </button>

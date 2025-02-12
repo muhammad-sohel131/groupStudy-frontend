@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { motion } from "framer-motion"; // Updated import
 import AuthContext from "../../context/AuthContext";
 import UseAxiosApi from "../../api/UseAxiosApi";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 import Loading from "../../Loading/Loading";
 
 const Assignments = () => {
@@ -33,6 +33,10 @@ const Assignments = () => {
 
   // Delete Assignment
   const handleDelete = async (id, creatorEmail) => {
+    if (!user) {
+      toast.warning("Please, Login to Perform this Actions.")
+      return
+    }
     if (creatorEmail !== user.email) {
       toast.error("Only Owner can delete this!");
       return;
@@ -45,7 +49,7 @@ const Assignments = () => {
       const response = await axiosApi.delete(`/assignments/${id}`, {
         withCredentials: true
       })
-      
+
       if (response.status === 200) {
         setAssignments(assignments.filter((assignment) => assignment._id !== id));
         toast.success("Assignment deleted successfully!");
@@ -60,6 +64,10 @@ const Assignments = () => {
 
   // Navigate to Update Page
   const handleUpdate = (id, creatorEmail) => {
+    if (!user) {
+      toast.warning("Please, Login to Perform this Actions.")
+      return
+    }
     if (creatorEmail !== user.email) {
       toast.error("Only Owner can update it!");
       return;
@@ -72,7 +80,7 @@ const Assignments = () => {
     navigate(`/assignments/${id}`);
   };
 
-  if(!assignments.length){
+  if (!assignments.length) {
     return <Loading />
   }
   return (
@@ -82,10 +90,10 @@ const Assignments = () => {
       </Helmet>
       <h2 className="text-2xl font-bold mb-6">All Assignments</h2>
       {/* Filter and Search Section */}
-      <div className="p-6 mb-10 bg-gray-100 rounded-md shadow-md">
+      <div className="p-6 mb-10 bg-[#1AA260] rounded-md shadow-md">
         <div className="flex flex-col sm:flex-row items-center gap-4">
           <div className="w-full sm:w-1/3">
-            <label htmlFor="difficulty" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="difficulty" className="block text-sm font-medium text-white">
               Filter by Difficulty:
             </label>
             <select
@@ -101,7 +109,7 @@ const Assignments = () => {
             </select>
           </div>
           <div className="w-full sm:w-2/3">
-            <label htmlFor="search" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="search" className="block text-sm font-medium text-white">
               Search by Title:
             </label>
             <input
@@ -116,11 +124,11 @@ const Assignments = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {assignments.map((assignment) => (
           <motion.div
             key={assignment._id}
-            className="bg-white shadow-md rounded-md overflow-hidden"
+            className="bg-white p-4 shadow-md rounded-md overflow-hidden"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
@@ -128,9 +136,9 @@ const Assignments = () => {
             <img
               src={assignment.thumbnail}
               alt={assignment.title}
-              className="h-40 w-full object-contain"
+              className="h-40 w-full rounded-md"
             />
-            <div className="p-4">
+            <div className="py-4">
               <h3 className="text-lg font-bold text-gray-800">{assignment.title}</h3>
               <p className="text-sm text-gray-600">{assignment.description}</p>
               <p className="mt-2 text-gray-800 font-medium">Marks: {assignment.marks}</p>

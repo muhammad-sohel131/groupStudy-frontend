@@ -44,7 +44,7 @@ const MyAttemptedAssignment = () => {
       <h2 className="text-3xl font-bold text-brand mb-6">My Submitted Assignments</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-          <thead className="bg-brand text-black">
+          <thead className="bg-[#1AA260] text-white">
             <tr>
               <th className="text-left px-6 py-4 font-medium uppercase">Title</th>
               <th className="text-left px-6 py-4 font-medium uppercase">Status</th>
@@ -57,7 +57,7 @@ const MyAttemptedAssignment = () => {
             {assignments.map((assignment) => (
               <tr
                 key={assignment._id}
-                className="border-b text-gray-800 hover:bg-gray-100 transition duration-150"
+                className="border-b text-gray-800 hover:bg-[rgba(26,162,96,.1)] transition duration-150"
               >
                 <td className="px-6 py-4">{assignment.title}</td>
                 <td className="px-6 py-4">{assignment.status}</td>

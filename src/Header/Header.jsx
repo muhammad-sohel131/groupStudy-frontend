@@ -44,7 +44,7 @@ export default function Header() {
         return <Loading />
     }
     return (
-        <nav className={`border-b top-0 transition-all duration-500 border-gray-100 sticky ${isStikcy ? "py-2" : 'py-4'} ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
+        <nav className={`border-b z-50 top-0 transition-all duration-500 border-gray-100 sticky ${isStikcy ? "py-2" : 'py-4'} ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
             <div className='flex justify-between items-center cs-container relative'>
                 <h2 className='text-[#F4B503] text-[30px] font-extrabold'><Link to='/'>Group Study</Link></h2>
                 <ul className='lg:flex hidden gap-5 items-center'>

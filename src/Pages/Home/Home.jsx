@@ -17,7 +17,7 @@ const Home = () => {
           <p className="text-lg mb-6">
             Collaborate, learn, and grow with our platform. Simplifying group studies and assignments.
           </p>
-          <button className="bg-white text-[#1AA260] px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition">
+          <button className="bg-[#1AA260] text-white px-6 py-3 rounded-lg font-semibol">
             <Link to='/assignments'>Get Started</Link>
           </button>
         </div>
@@ -29,9 +29,9 @@ const Home = () => {
       <LevelAssignments level='hard' />
 
       {/* Feature Section */}
-      <section className="py-16">
+      <section className="py-16 bg-[#1AA260]">
         <div className="cs-container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-10">Features</h2>
+          <h2 className="text-3xl text-white font-bold mb-10">Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Feature 1 */}
             <div className="p-6 bg-white text-gray-600 rounded-lg shadow-lg hover:shadow-xl transition">
@@ -53,22 +53,22 @@ const Home = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="bg-gray-100 text-gray-800 py-16">
+      <section className="py-16">
         <div className="cs-container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-10">Frequently Asked Questions</h2>
           <div className="space-y-6 max-w-4xl mx-auto">
             {/* FAQ 1 */}
-            <div className="bg-white p-6 rounded-lg shadow-lg">
+            <div className="bg-[#1AA260] text-white p-6 rounded-lg shadow-lg">
               <h3 className="font-semibold text-lg mb-2">What is Group Study?</h3>
               <p>Group Study is a platform designed to help students collaborate on assignments and group studies effectively.</p>
             </div>
             {/* FAQ 2 */}
-            <div className="bg-white p-6 rounded-lg shadow-lg">
+            <div className="bg-[#1AA260] text-white p-6 rounded-lg shadow-lg">
               <h3 className="font-semibold text-lg mb-2">How do I submit assignments?</h3>
               <p>You can submit assignments by logging in, navigating to the assignments page, and uploading your submission.</p>
             </div>
             {/* FAQ 3 */}
-            <div className="bg-white p-6 rounded-lg shadow-lg">
+            <div className="bg-[#1AA260] text-white p-6 rounded-lg shadow-lg">
               <h3 className="font-semibold text-lg mb-2">Is my data secure?</h3>
               <p>Yes, we use industry-standard security protocols to protect your data and ensure privacy.</p>
             </div>
